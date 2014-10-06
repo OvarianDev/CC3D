@@ -1,0 +1,60 @@
+<CompuCell3D Revision="20140523" Version="3.7.2">   
+   <Potts><!-- Basic properties of CPM (GGH) algorithm -->
+      <Dimensions x="320" y="320" z="1"/>
+      <Anneal>10</Anneal>  <!--Intially: 0, worked at 10-->
+      <Steps>247</Steps> <!--118-125-->
+      <Temperature>15</Temperature><!--Worked at 450, 10-->
+      <Flip2DimRatio>1</Flip2DimRatio>
+      <NeighborOrder>2</NeighborOrder><!--Initially: 2-->
+      <LatticeType>Square</LatticeType>
+   </Potts>
+   
+   <Plugin Name="VolumeLocalFlex"/> <!--LEAVE THIS IN!!!-->
+   <!--<Plugin Name="Volume">
+     <TargetVolume>25</TargetVolume>
+     <LambdaVolume>2</LambdaVolume> 
+   </Plugin>-->
+   
+   <Plugin Name="Surface">
+      <TargetSurface>20</TargetSurface>
+      <LambdaSurface>1.5</LambdaSurface>
+   </Plugin>
+   
+   <Plugin Name="CellType">      
+      <!-- Listing all cell types in the simulation --> 
+      <CellType TypeId="0" TypeName="Medium"/>
+      <CellType TypeId="1" TypeName="PrePGC"/>
+      <!--<CellType TypeName="SupportingCells" TypeId="2"/>-->
+      <CellType TypeName="SupportingCells" TypeId="2" Freeze=""/><!--Hindgut-->
+   </Plugin>
+   
+   <Plugin Name="CenterOfMass">      
+      <!-- Module tracking center of mass of each cell -->
+   </Plugin>
+   
+   <Plugin Name="Contact">
+      <!-- Specification of adhesion energies -->
+      <Energy Type1="Medium" Type2="Medium">0</Energy>
+      <Energy Type1="Medium" Type2="PrePGC">40</Energy> <!--Intially: 0, 16-->
+      <Energy Type1="PrePGC" Type2="PrePGC">2</Energy> <!--Intially: 10, then 2, 10-->
+      <Energy Type1="SupportingCells" Type2="PrePGC">0</Energy><!--Was at 11-->
+      <Energy Type1="SupportingCells" Type2="SupportingCells">16</Energy><!--Was at 16-->
+      <Energy Type1="SupportingCells" Type2="Medium">16</Energy><!--Was at 16-->
+      <NeighborOrder>2</NeighborOrder>
+   </Plugin>
+   
+   <Plugin Name="ExternalPotential">
+   
+   <!-- External force applied to cell. Each cell type has different force. -->
+   <!-- For more flexible specification of the constraint (done in Python) please use ExternalPotentialLocalFlex plugin -->
+   <!-- Algorithm options are: PixelBased, CenterOfMassBased -->
+   <Algorithm>CenterOfMassBased</Algorithm>
+   <ExternalPotentialParameters CellType="PrePGC" x="-1000.5" y="-500.0" z="0.0"/>
+   <ExternalPotentialParameters CellType="SupportingCells" x="0.0" y="0.0" z="0.0"/>
+</Plugin>
+
+   
+   <Steppable Type="PIFInitializer">
+      <PIFName>Simulation/MED_trial01.piff</PIFName>
+   </Steppable>
+</CompuCell3D>

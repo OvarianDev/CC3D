@@ -1,0 +1,6 @@
+<Simulation version="3.5.1">
+   <XMLScript Type="XMLScript">Simulation/mouseOvarianDevelopment.xml</XMLScript>
+   <PythonScript Type="PythonScript">Simulation/mouseOvarianDevelopment.py</PythonScript>
+   <Resource Type="PIFFile">Simulation/mouseOvarianDevelopmentScaled.piff</Resource>
+   <Resource Type="Python">Simulation/mouseOvarianDevelopmentSteppables.py</Resource>
+</Simulation>
