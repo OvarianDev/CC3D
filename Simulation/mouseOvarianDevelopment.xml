@@ -24,6 +24,7 @@
       <!-- Listing all cell types in the simulation --> 
       <CellType TypeId="0" TypeName="Medium"/>
       <CellType TypeId="1" TypeName="PrePGC"/>
+
       <!--<CellType TypeName="SupportingCells" TypeId="2"/>-->
       <CellType TypeName="SupportingCells" TypeId="2" Freeze=""/><!--Hindgut-->
    </Plugin>
@@ -49,12 +50,12 @@
    <!-- For more flexible specification of the constraint (done in Python) please use ExternalPotentialLocalFlex plugin -->
    <!-- Algorithm options are: PixelBased, CenterOfMassBased -->
    <Algorithm>CenterOfMassBased</Algorithm>
-   <ExternalPotentialParameters CellType="PrePGC" x="-1000.5" y="-500.0" z="0.0"/>
+   <ExternalPotentialParameters CellType="PrePGC" x=“-1000.5" y=“-500.0" z="0.0"/>
    <ExternalPotentialParameters CellType="SupportingCells" x="0.0" y="0.0" z="0.0"/>
 </Plugin>
 
    
    <Steppable Type="PIFInitializer">
-      <PIFName>Simulation/MED_trial01.piff</PIFName>
+      <PIFName>Simulation/MODMstart.piff</PIFName>
    </Steppable>
 </CompuCell3D>
