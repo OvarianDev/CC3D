@@ -23,10 +23,13 @@
    <Plugin Name="CellType">      
       <!-- Listing all cell types in the simulation --> 
       <CellType TypeId="0" TypeName="Medium"/>
-      <CellType TypeId="1" TypeName="PrePGC"/>
-
-      <!--<CellType TypeName="SupportingCells" TypeId="2"/>-->
-      <CellType TypeName="SupportingCells" TypeId="2" Freeze=""/><!--Hindgut-->
+      <CellType TypeId="1" TypeName="PGC"/>
+      <CellType TypeId="2" TypeName="embryo"/>
+      <CellType TypeId="3" TypeName="hindgut"/>
+      <CellType TypeId="4" TypeName="amnioticsac"/>
+      <!--<CellType TypeName="embryo" TypeId="2"/>-->
+      <CellType TypeName="hindgut" TypeId="3" Freeze=""/>
+      <CellType TypeName="amnioticsac" TypeId="4" Freeze=""/>
    </Plugin>
    
    <Plugin Name="CenterOfMass">      
@@ -36,11 +39,11 @@
    <Plugin Name="Contact">
       <!-- Specification of adhesion energies -->
       <Energy Type1="Medium" Type2="Medium">0</Energy>
-      <Energy Type1="Medium" Type2="PrePGC">40</Energy> <!--Intially: 0, 16-->
-      <Energy Type1="PrePGC" Type2="PrePGC">2</Energy> <!--Intially: 10, then 2, 10-->
-      <Energy Type1="SupportingCells" Type2="PrePGC">0</Energy><!--Was at 11-->
-      <Energy Type1="SupportingCells" Type2="SupportingCells">16</Energy><!--Was at 16-->
-      <Energy Type1="SupportingCells" Type2="Medium">16</Energy><!--Was at 16-->
+      <Energy Type1="Medium" Type2="PGC">40</Energy> <!--Intially: 0, 16-->
+      <Energy Type1="PGC" Type2="PGC">2</Energy> <!--Intially: 10, then 2, 10-->
+      <Energy Type1="embryo" Type2="PGC">40</Energy><!--Was at 11-->
+      <Energy Type1="embryo" Type2="embryo">16</Energy><!--Was at 16-->
+      <Energy Type1="embryo" Type2="Medium">16</Energy><!--Was at 16-->
       <NeighborOrder>2</NeighborOrder>
    </Plugin>
    
@@ -50,12 +53,12 @@
    <!-- For more flexible specification of the constraint (done in Python) please use ExternalPotentialLocalFlex plugin -->
    <!-- Algorithm options are: PixelBased, CenterOfMassBased -->
    <Algorithm>CenterOfMassBased</Algorithm>
-   <ExternalPotentialParameters CellType="PrePGC" x=“-1000.5" y=“-500.0" z="0.0"/>
-   <ExternalPotentialParameters CellType="SupportingCells" x="0.0" y="0.0" z="0.0"/>
+   <ExternalPotentialParameters CellType="PGC" x="90.0" y="3000.0" z="0.0"/>
+   <ExternalPotentialParameters CellType="embryo" x="0.0" y="0.0" z="0.0"/>
 </Plugin>
 
    
    <Steppable Type="PIFInitializer">
-      <PIFName>Simulation/MODMstart.piff</PIFName>
+      <PIFName>Simulation/MouseEmbryo_Oct06.piff</PIFName>
    </Steppable>
 </CompuCell3D>
